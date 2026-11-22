@@ -293,7 +293,8 @@ document.addEventListener("click", (event) => {
   if (button) navigate(button.dataset.go);
 });
 addEventListener("keydown", (event) => {
-  if (event.key === "Escape") navigate("home");
+  if (event.key === "Escape" && !document.querySelector("dialog[open]"))
+    navigate("home");
 });
 addEventListener("hashchange", () => select(linkedGame()));
 function reflow() {
@@ -306,3 +307,22 @@ motionPreference.addEventListener("change", () => {
   render(performance.now());
 });
 render(started);
+
+document.addEventListener("click", (event) => {
+  const opener = event.target.closest("button[data-journal]");
+  if (!opener) return;
+  const dialog = document.getElementById("journal-" + opener.dataset.journal);
+  const movie = document.querySelector(".projected-film:not([hidden]) video");
+  const resume = movie && !movie.paused;
+  if (resume) movie.pause();
+  dialog.showModal();
+  dialog.scrollTop = 0;
+  dialog.addEventListener(
+    "close",
+    () => {
+      if (resume && !movie.closest(".projected-film").hidden)
+        movie.play().catch(() => {});
+    },
+    { once: true },
+  );
+});

@@ -941,3 +941,70 @@ button:hover {
     font-size: 10px;
   }
 }
+
+.game-actions {
+  display: grid;
+  justify-items: stretch;
+  width: max-content;
+  gap: 7px;
+  clear: both;
+}
+.game-actions .shelf-play,
+.journal-open {
+  text-align: center;
+}
+.journal-open,
+.journal form button {
+  border: 1px solid #455747;
+  border-radius: 3px;
+  background: #fbefd1;
+  color: #263b37;
+  padding: 6px 16px;
+  font-size: 15px;
+}
+.journal {
+  width: min(620px, calc(100vw - 30px));
+  max-height: 82vh;
+  overflow: auto;
+  padding: 0 24px 24px;
+  background: #fbf2d9;
+  color: #243836;
+  border: 2px solid #344b45;
+  border-radius: 8px;
+  line-height: 1.65;
+  overscroll-behavior: contain;
+}
+.journal::backdrop {
+  background: #132a30ad;
+}
+.journal header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  background: #fbf2d9;
+  padding: 16px 0;
+  border-bottom: 1px solid #a29d85;
+}
+.journal h2 {
+  font-size: clamp(19px, 4vw, 25px);
+  margin: 0;
+}
+.journal section {
+  margin-top: 18px;
+}
+.journal h3 {
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+.journal p,
+.journal dl,
+.journal dd {
+  margin: 0;
+}
+.journal dt {
+  font-weight: bold;
+  margin-top: 7px;
+}
